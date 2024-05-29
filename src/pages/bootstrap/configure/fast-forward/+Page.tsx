@@ -5,7 +5,7 @@ import { navigate } from "vike/client/router";
 
 export const Page = () => {
   const [fastForward, setFastForward] = useState(
-    window?.localStorage?.getItem?.("fast-forward") === "true",
+    globalThis?.localStorage?.getItem?.("fast-forward") === "true",
   );
   return (
     <>
