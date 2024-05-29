@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { platform } from "@tauri-apps/plugin-os";
 import { navigate } from "vike/client/router";
 
 export const Page = () => {
   const [fastForward, setFastForward] = useState(
-    window.localStorage.getItem("fast-forward") === "true",
+    window?.localStorage?.getItem?.("fast-forward") === "true",
   );
   return (
     <>
@@ -25,7 +25,7 @@ export const Page = () => {
           informational prompts where possible.
         </p>
         <form>
-          <formgroup
+          <fieldset
             style={{
               padding: "1.0rem 0",
               display: "flex",
@@ -44,10 +44,13 @@ export const Page = () => {
               }}
               type="checkbox"
               id="fast-forward"
-              value={fastForward}
+              checked={fastForward}
               onChange={(e) => {
                 setFastForward(e.target.checked);
-                window.localStorage.setItem("fast-forward", e.target.checked);
+                window.localStorage.setItem(
+                  "fast-forward",
+                  String(e.target.checked),
+                );
               }}
             />
             <label
@@ -59,7 +62,7 @@ export const Page = () => {
             >
               Enable fast-forward mode
             </label>
-          </formgroup>
+          </fieldset>
           <output>
             <p
               style={{
@@ -102,14 +105,17 @@ export const Page = () => {
             cursor: "pointer",
           }}
           onClick={async () => {
-            console.log(await platform());
-
             return {
               macos: () => navigate("/bootstrap/install/brew"),
               windows: () => navigate("/bootstrap/install/choco"),
               linux: () => navigate("/bootstrap/install/linux"),
               dragonfly: () => navigate("/bootstrap/unsupported"),
               ios: () => navigate("/bootstrap/unsupported"),
+              freebsd: () => navigate("/bootstrap/unsupported"),
+              netbsd: () => navigate("/bootstrap/unsupported"),
+              openbsd: () => navigate("/bootstrap/unsupported"),
+              solaris: () => navigate("/bootstrap/unsupported"),
+              android: () => navigate("/bootstrap/unsupported"),
             }[await platform()]();
           }}
         >

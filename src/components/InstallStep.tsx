@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { navigate } from "vike/client/router";
 
@@ -31,7 +31,7 @@ export const InstallStep = ({
 
   useEffect(() => {
     (async () => {
-      if (checkAlreadyInstalled && checkingInstalled !== "DONE") {
+      if (checkingInstalled !== "DONE") {
         setCheckingInstalled(true);
         setLoading(true);
         setInstalled((await fetch(`/api/install-${name.toLowerCase()}`)).ok);

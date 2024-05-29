@@ -1,10 +1,7 @@
-import { useState } from "react";
 import { navigate } from "vike/client/router";
 import "./Page.css";
 
 export const Page = () => {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <header>
