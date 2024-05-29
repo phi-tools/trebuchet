@@ -47,7 +47,7 @@ export const Page = () => {
               checked={fastForward}
               onChange={(e) => {
                 setFastForward(e.target.checked);
-                window.localStorage.setItem(
+                window?.localStorage?.setItem?.(
                   "fast-forward",
                   String(e.target.checked),
                 );
@@ -91,7 +91,7 @@ export const Page = () => {
             cursor: "pointer",
           }}
           onClick={() => {
-            window.history.back();
+            window?.history?.back?.();
           }}
         >
           Back
